@@ -1,0 +1,7 @@
+videos/
+__pycache__/
+.vscode/
+images/
+lib/
+python copy/
+relativistic-ray-tracer-master/
