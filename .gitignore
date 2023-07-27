@@ -3,3 +3,5 @@ manim_old/
 .vscode/
 __pycache__
 export/
+in.in
+out.out
