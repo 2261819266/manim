@@ -15,6 +15,9 @@ camera_qualities:
     resolution: 3840x2160
 directories:
   mirror_module_path: false
+  output: E:\manim\export
+  raster_images: E:\manim\assets
+  temporary_storage: E:\manim\export\temp
 full_screen: false
 style:
   background_color: '#333333'
