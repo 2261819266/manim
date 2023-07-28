@@ -74,7 +74,7 @@ class APhisicsProblem(Scene):
             Tex("\\frac{P - fv}{v} = m\\frac{dv}{dt}", isolate = to_isolate),
             Tex("dt = m\\frac{v}{P - fv}dv", isolate = to_isolate),
             Tex("dt = m\\frac{fv - P + P}{(P - fv)f}dv", isolate = to_isolate),
-            Tex("dt = -\\frac{m}{f} + \\frac{\\frac{mP}{f}}{P - fv}dv", isolate = to_isolate),
+            Tex("dt = -\\frac{m}{f}v + \\frac{\\frac{mP}{f}}{P - fv}dv", isolate = to_isolate),
             Tex("\int dt + C = \int{(-\\frac{m}{f} + \\frac{\\frac{mP}{f}}{P - fv}dv)}", isolate = to_isolate),
             Tex("t + C = -\\frac{mv}{f} - \\frac{mP}{f^2}ln(P - fv)", isolate = to_isolate),
             Tex("t + C = -\\frac{mv}{f} - \\frac{mP}{f^2}ln((1 - \\frac{f}{P}v)P)", isolate = to_isolate),
@@ -138,4 +138,5 @@ class APhisicsProblem(Scene):
                     self.play(FadeOut(k1))
                     self.play(FadeIn(i.shift(UP)))
                 k1 = i
+            self.wait()
         self.wait(3)
