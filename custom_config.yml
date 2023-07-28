@@ -23,10 +23,10 @@ style:
   background_color: '#333333'
   font: Consolas
 tex:
+  text_to_replace: [tex_expression]
   executable: xelatex -no-pdf
-  intermediate_filetype: xdv
   template_file: ctex_template.tex
-  text_to_replace: '[tex_expression]'
+  intermediate_filetype: xdv
 universal_import_line: from manimlib import *
 window_monitor: 0
 window_position: UR

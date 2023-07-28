@@ -7,3 +7,4 @@ class SquareToCircle(Scene):
         circle.set_stroke(BLUE_E, width=4)
 
         self.add(circle)
+        
