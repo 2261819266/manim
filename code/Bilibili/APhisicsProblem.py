@@ -23,10 +23,11 @@ class APhisicsProblem(Scene):
         #     y_range = (0, 8),
         #     axis_config = {
         #         "include_tip": True,
+        #         "stroke_color": BLUE_E,
         #     },
         # ).shift(DOWN * 2 + LEFT * 1)
         # axes.flip(UR)
-        # # axes.add_coordinate_labels()
+        # axes.add_coordinate_labels()
 
         # self.play(FadeIn(axes))
 
@@ -67,26 +68,30 @@ class APhisicsProblem(Scene):
         to_isolate = [
             "P", "v", "-", "f", "=", "m", "a", "dv", "dt", 
         ]
-        ans = VGroup(
-            Text("假设汽车的质量为m  初速度为0  功率为定值P", font = "Noto Sans CJK SC", font_size = 48, color = BLUE),
-            Text("根据牛顿第二定律", font = "Noto Sans CJK SC", font_size = 48, color = BLUE),
-            Tex("\\frac{P}{v} - f = ma", isolate = to_isolate),
-            Tex("\\frac{P - fv}{v} = m\\frac{dv}{dt}", isolate = to_isolate),
-            Tex("dt = m\\frac{v}{P - fv}dv", isolate = to_isolate),
-            Tex("dt = m\\frac{fv - P + P}{(P - fv)f}dv", isolate = to_isolate),
-            Tex("dt = -\\frac{m}{f}dv + \\frac{\\frac{mP}{f}}{P - fv}dv", isolate = to_isolate),
-            Tex("\int dt + C = \int{(-\\frac{m}{f}dv + \\frac{\\frac{mP}{f}}{P - fv}dv)}", isolate = to_isolate),
-            Tex("t + C = -\\frac{mv}{f} - \\frac{mP}{f^2}ln(P - fv)", isolate = to_isolate),
-            Tex("t + C = -\\frac{mv}{f} - \\frac{mP}{f^2}ln((1 - \\frac{f}{P}v)P)", isolate = to_isolate),
-            Tex("t + C = -\\frac{mv}{f} - \\frac{mP}{f^2}ln{(1 - \\frac{f}{P}v)} - \\frac{mP}{f^2}lnP", isolate = to_isolate),
-            Text("把t = 0, v = 0带入", font = "Noto Sans CJK SC", font_size = 48, color = BLUE),
-            Tex("0 + C = -\\frac{0m}{f} - \\frac{mP}{f^2}ln{(1 - 0\\frac{f}{P})} - \\frac{mP}{f^2}lnP", isolate = to_isolate),
-            # Tex("0 + C = - \\frac{mP}{f^2}lnP", isolate = to_isolate),
-            Tex("C = - \\frac{mP}{f^2}lnP", isolate = to_isolate),
-            Text("把C回代", font = "Noto Sans CJK SC", font_size = 48, color = BLUE),
-            Tex("t - \\frac{mP}{f^2}lnP = -\\frac{mv}{f} - \\frac{mP}{f^2}ln{(1 - \\frac{f}{P}v)} - \\frac{mP}{f^2}lnP", isolate = to_isolate),
-            Tex("t = -\\frac{m}{f}v - \\frac{mP}{f^2}ln{(1 - \\frac{f}{P}v)}", isolate = to_isolate),
+        answers = VGroup(
+            VGroup(
+                Text("假设汽车的质量为m  初速度为0  功率为定值P 所受阻力恒为f", font = "Noto Sans CJK SC", font_size = 35, color = BLUE),
+                Text("根据牛顿第二定律", font = "Noto Sans CJK SC", font_size = 48, color = BLUE),
+                Tex("\\frac{P}{v} - f = ma", isolate = to_isolate),
+                Tex("\\frac{P - fv}{v} = m\\frac{dv}{dt}", isolate = to_isolate),
+                Tex("dt = m\\frac{v}{P - fv}dv", isolate = to_isolate),
+                Tex("dt = m\\frac{fv - P + P}{(P - fv)f}dv", isolate = to_isolate),
+                Tex("dt = -\\frac{m}{f}dv + \\frac{\\frac{mP}{f}}{P - fv}dv", isolate = to_isolate),
+                Tex("\int dt + C = \int{(-\\frac{m}{f}dv + \\frac{\\frac{mP}{f}}{P - fv}dv)}", isolate = to_isolate),
+                Tex("t + C = -\\frac{mv}{f} - \\frac{mP}{f^2}ln(P - fv)", isolate = to_isolate),
+                Tex("t + C = -\\frac{mv}{f} - \\frac{mP}{f^2}ln((1 - \\frac{f}{P}v)P)", isolate = to_isolate),
+                Tex("t + C = -\\frac{mv}{f} - \\frac{mP}{f^2}ln{(1 - \\frac{f}{P}v)} - \\frac{mP}{f^2}lnP", isolate = to_isolate),
+                Text("把t = 0, v = 0带入", font = "Noto Sans CJK SC", font_size = 48, color = BLUE),
+                Tex("0 + C = -\\frac{0m}{f} - \\frac{mP}{f^2}ln{(1 - 0\\frac{f}{P})} - \\frac{mP}{f^2}lnP", isolate = to_isolate),
+                # Tex("0 + C = - \\frac{mP}{f^2}lnP", isolate = to_isolate),
+                Tex("C = - \\frac{mP}{f^2}lnP", isolate = to_isolate),
+                Text("把C回代", font = "Noto Sans CJK SC", font_size = 48, color = BLUE),
+                Tex("t - \\frac{mP}{f^2}lnP = -\\frac{mv}{f} - \\frac{mP}{f^2}ln{(1 - \\frac{f}{P}v)} - \\frac{mP}{f^2}lnP", isolate = to_isolate),
+                Tex("t = -\\frac{m}{f}v - \\frac{mP}{f^2}ln{(1 - \\frac{f}{P}v)}", isolate = to_isolate),
+            )
         )
+        
+        ans = answers[0]
         play_kw = {"run_time": 3}
         # for i in ans:
         #     if i.__class__ == Tex:
@@ -139,4 +144,6 @@ class APhisicsProblem(Scene):
                     self.play(FadeIn(i.shift(UP)))
                 k1 = i
             self.wait()
-        self.wait(3)
+        self.wait(5)
+
+        self.play(FadeOut(ans))
