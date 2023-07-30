@@ -1,10 +1,11 @@
 from manimlib import *
 
-class SquareToCircle(Scene):
-    def construct(self):
-        circle = Circle()
-        circle.set_fill(BLUE, opacity=0.5)
-        circle.set_stroke(BLUE_E, width=4)
+class DRAW(Scene):
+    def construct(self) -> None:
+        cir1 = Circle()
+        cir2 = Circle()
 
-        self.add(circle)
-        
+        self.add(cir1, cir2)
+        cir2.move_to(UP * 2, coor_mask=np.array([1, 0, 1]))
+
+        self.wait()

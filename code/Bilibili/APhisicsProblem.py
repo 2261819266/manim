@@ -88,6 +88,31 @@ class APhisicsProblem(Scene):
                 Text("把C回代", font = "Noto Sans CJK SC", font_size = 48, color = BLUE),
                 Tex("t - \\frac{mP}{f^2}lnP = -\\frac{mv}{f} - \\frac{mP}{f^2}ln{(1 - \\frac{f}{P}v)} - \\frac{mP}{f^2}lnP", isolate = to_isolate),
                 Tex("t = -\\frac{m}{f}v - \\frac{mP}{f^2}ln{(1 - \\frac{f}{P}v)}", isolate = to_isolate),
+            ),
+            VGroup(
+                Text("假设汽车的质量为m  初速度为0  功率为定值P 所受阻力为kv", font = "Noto Sans CJK SC", font_size = 35, color = BLUE),
+                Text("根据牛顿第二定律", font = "Noto Sans CJK SC", font_size = 48, color = BLUE),
+                Tex("\\frac{P}{v} - kv = ma", isolate = to_isolate),
+                Tex("\\frac{P - kv^2}{v} = m\\frac{dv}{dt}", isolate = to_isolate),
+                Tex("dt = m\\frac{v}{P - kv^2}{dv}", isolate = to_isolate),
+                Tex("dt = -m\\frac{-2kv}{2k(P - kv^2)}dv", isolate = to_isolate),
+                Tex("\int dt + C = \int -m\\frac{-2kv}{2k(P - kv^2)}dv", isolate = to_isolate),
+                Tex("t + C = -\\frac{m}{2k}ln(P - kv^2)", isolate = to_isolate),
+                Tex("t + C = -\\frac{m}{2k}ln(P(1 - \\frac{k}{P}v^2)", isolate = to_isolate),
+                Tex("t + C = -\\frac{m}{2k}ln(1 - \\frac{k}{P}v^2) - \\frac{m}{2k}lnP", isolate = to_isolate),
+                Text("把t = 0, v = 0带入", font = "Noto Sans CJK SC", font_size = 48, color = BLUE),
+                Tex("0 + C = -\\frac{m}{2k}ln(1 - \\frac{k}{P}0^2) - \\frac{m}{2k}lnP", isolate = to_isolate),
+                Tex("C = - \\frac{m}{2k}lnP", isolate = to_isolate),
+                Text("把C回代", font = "Noto Sans CJK SC", font_size = 48, color = BLUE),
+                Tex("t - \\frac{m}{2k}lnP = -\\frac{m}{2k}ln(1 - \\frac{k}{P}v^2) - \\frac{m}{2k}lnP", isolate = to_isolate),
+                Tex("t = -\\frac{m}{2k}ln(1 - \\frac{k}{P}v^2)", isolate = to_isolate),
+                Tex("-\\frac{2k}{m}t = ln(1 - \\frac{k}{P}v^2)", isolate = to_isolate),
+                Tex("e ^ {-\\frac{2k}{m}t} = e^{ln(1 - \\frac{k}{P}v^2)}", isolate = to_isolate),
+                Tex("e ^ {-\\frac{2k}{m}t} = 1 - \\frac{k}{P}v^2", isolate = to_isolate),
+                Tex("\\frac{k}{P}v^2 = 1 - e ^ {-\\frac{2k}{m}t}", isolate = to_isolate),
+                Tex("v^2 = \\frac{P}{k}(1 - e ^ {-\\frac{2k}{m}t})", isolate = to_isolate),
+                Tex("v = \\sqrt{\\frac{P}{k}(1 - e ^ {-\\frac{2k}{m}t})}", isolate = to_isolate),
+                
             )
         )
         
@@ -105,11 +130,11 @@ class APhisicsProblem(Scene):
         #         })
 
 
-        self.play(Write(ans[0]))
-        self.play(ans[0].animate.shift(UP * 3))
+        # self.play(Write(ans[0]))
+        # self.play(ans[0].animate.shift(UP * 3))
 
-        self.play(Write(ans[1].shift(UP)))
-        self.play(Write(ans[2]))
+        # self.play(Write(ans[1].shift(UP)))
+        # self.play(Write(ans[2]))
         # self.play(
         #     TransformMatchingTex(
         #         ans[2], ans[3],
@@ -122,8 +147,43 @@ class APhisicsProblem(Scene):
         #         path_arc = PI / 2,
         #     )
         # )
+        # k1 = ans[1]
+        # k2 = 0
+        # for i in ans:
+        #     if i.__class__ == Tex:
+        #         if k2:
+        #             self.play(
+        #                 TransformMatchingTex(
+        #                     k2, i, path_arc = PI / 2,
+        #                 ), **play_kw
+        #             )
+        #         k2 = i
+        #     else:
+        #         if k1 and i != ans[0] and i != ans[1]:
+        #             # self.play(
+        #             #     TransformMatchingTex(
+        #             #         k1, i.shift(UP)
+        #             #     ), **play_kw
+        #             # )
+        #             self.play(FadeOut(k1))
+        #             self.play(FadeIn(i.shift(UP)))
+        #         k1 = i
+        #     self.wait()
+        # self.wait(5)
+
+        # self.play(FadeOut(ans))
+
+        ans = answers[1]
+
+        self.play(Write(ans[0]))
+        self.play(ans[0].animate.shift(UP * 3))
+
+        self.play(Write(ans[1].shift(UP)))
+        self.play(Write(ans[2]))
+
         k1 = ans[1]
         k2 = 0
+
         for i in ans:
             if i.__class__ == Tex:
                 if k2:
@@ -145,5 +205,3 @@ class APhisicsProblem(Scene):
                 k1 = i
             self.wait()
         self.wait(5)
-
-        self.play(FadeOut(ans))
