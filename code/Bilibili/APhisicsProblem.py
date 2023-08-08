@@ -130,30 +130,30 @@ class APhisicsProblem(Scene):
                 Tex("dt = m(-\\frac{-\\sqrt[3]k}{3\\sqrt[3]k(\\sqrt[3]P - \\sqrt[3]kv)} + \\frac{(2\\sqrt[3]kv + \\sqrt[3]P)}{6((\\sqrt[3]P)^2 + \\sqrt[3]P\\sqrt[3]kv + (\\sqrt[3]kv)^2)} - \\frac{3\\sqrt[3]P}{6((\\sqrt[3]P)^2 + \\sqrt[3]P\\sqrt[3]kv + (\\sqrt[3]kv)^2)})dv", isolate = to_isolate, font_size = 30),
                 Tex("dt = m(-\\frac{-\\sqrt[3]k}{3\\sqrt[3]k(\\sqrt[3]P - \\sqrt[3]kv)} + \\frac{(2\\sqrt[3]kv + \\sqrt[3]P)}{6((\\sqrt[3]P)^2 + \\sqrt[3]P\\sqrt[3]kv + (\\sqrt[3]kv)^2)} - \\frac{\\sqrt[3]P}{2((\\sqrt[3]P)^2 + \\sqrt[3]P\\sqrt[3]kv + (\\sqrt[3]kv)^2)})dv", isolate = to_isolate, font_size = 30),
                 Tex("\\int dt + C = \\int m(-\\frac{-\\sqrt[3]k}{3\\sqrt[3]k(\\sqrt[3]P - \\sqrt[3]kv)} + \\frac{(2\\sqrt[3]kv + \\sqrt[3]P)}{6((\\sqrt[3]P)^2 + \\sqrt[3]P\\sqrt[3]kv + (\\sqrt[3]kv)^2)} - \\frac{\\sqrt[3]P}{2((\\sqrt[3]P)^2 + \\sqrt[3]P\\sqrt[3]kv + (\\sqrt[3]kv)^2)})dv", isolate = to_isolate, font_size = 30),
-                Tex("t + C = \\frac{m}{3\\sqrt[3]k} ln(\\sqrt[3]P - \\sqrt[3]kv) + \\frac{m}{6\\sqrt[3]k}ln((\\sqrt[3]P)^2 + \\sqrt[3]P\\sqrt[3]kv + (\\sqrt[3]kv)^2) + \\frac{m}{\\sqrt{3}\\sqrt[3]k}tan^{-1}(\\frac{\\sqrt[3]P + 2\\sqrt[3]kv}{\\sqrt{3}\\sqrt[3]P})", isolate = to_isolate, font_size = 30),
+                Tex("t + C = -\\frac{m}{3\\sqrt[3]k} ln(\\sqrt[3]P - \\sqrt[3]kv) + \\frac{m}{6\\sqrt[3]k}ln((\\sqrt[3]P)^2 + \\sqrt[3]P\\sqrt[3]kv + (\\sqrt[3]kv)^2) - \\frac{m}{\\sqrt{3}\\sqrt[3]k}tan^{-1}(\\frac{\\sqrt[3]P + 2\\sqrt[3]kv}{\\sqrt{3}\\sqrt[3]P})", isolate = to_isolate, font_size = 30),
                 Tex(
-                    "t + C = \\frac{m}{3\\sqrt[3]k} ln(1 - \\frac{\\sqrt[3]k}{\\sqrt[3]P}v) + \\frac{m}{3\\sqrt[3]k} ln(\\sqrt[3]P) + \\frac{m}{6\\sqrt[3]k}ln(1 + \\frac{\\sqrt[3]k}{\\sqrt[3]P}kv + (\\frac{\\sqrt[3]k}{\\sqrt[3]P})^2v^2) + \\frac{m}{6\\sqrt[3]k}ln((\\sqrt[3]P)^2) + \\frac{m}{\\sqrt{3}\\sqrt[3]k}tan^{-1}(\\frac{\\sqrt[3]P + 2\\sqrt[3]kv}{\\sqrt{3}\\sqrt[3]P})", 
+                    "t + C = -\\frac{m}{3\\sqrt[3]k} ln(1 - \\frac{\\sqrt[3]k}{\\sqrt[3]P}v) - \\frac{m}{3\\sqrt[3]k} ln(\\sqrt[3]P) + \\frac{m}{6\\sqrt[3]k}ln(1 + \\frac{\\sqrt[3]k}{\\sqrt[3]P}kv + (\\frac{\\sqrt[3]k}{\\sqrt[3]P})^2v^2) + \\frac{m}{6\\sqrt[3]k}ln((\\sqrt[3]P)^2) - \\frac{m}{\\sqrt{3}\\sqrt[3]k}tan^{-1}(\\frac{\\sqrt[3]P + 2\\sqrt[3]kv}{\\sqrt{3}\\sqrt[3]P})", 
                     isolate = to_isolate, font_size = 20
                 ),
                 Text("把t = 0, v = 0带入", font = "Noto Sans CJK SC", font_size = 48, color = BLUE),
                 Tex(
-                    "0 + C = \\frac{m}{3\\sqrt[3]k} ln(1 - \\frac{\\sqrt[3]k}{\\sqrt[3]P} \\cdot 0) + \\frac{m}{3\\sqrt[3]k} ln(\\sqrt[3]P) + \\frac{m}{6\\sqrt[3]k}ln(1 + \\frac{\\sqrt[3]k}{\\sqrt[3]P}\\cdot 0 + (\\frac{\\sqrt[3]k}{\\sqrt[3]P})^2\\cdot 0) + \\frac{m}{6\\sqrt[3]k}ln((\\sqrt[3]P)^2) + \\frac{m}{\\sqrt{3}\\sqrt[3]k}tan^{-1}(\\frac{\\sqrt[3]P + 2\\sqrt[3]k\\cdot 0}{\\sqrt{3}\\sqrt[3]P})", 
+                    "0 + C = -\\frac{m}{3\\sqrt[3]k} ln(1 - \\frac{\\sqrt[3]k}{\\sqrt[3]P} \\cdot 0) - \\frac{m}{3\\sqrt[3]k} ln(\\sqrt[3]P) + \\frac{m}{6\\sqrt[3]k}ln(1 + \\frac{\\sqrt[3]k}{\\sqrt[3]P}\\cdot 0 + (\\frac{\\sqrt[3]k}{\\sqrt[3]P})^2\\cdot 0) + \\frac{m}{6\\sqrt[3]k}ln((\\sqrt[3]P)^2) - \\frac{m}{\\sqrt{3}\\sqrt[3]k}tan^{-1}(\\frac{\\sqrt[3]P + 2\\sqrt[3]k\\cdot 0}{\\sqrt{3}\\sqrt[3]P})", 
                     isolate = to_isolate, font_size = 20
                 ),
-                Tex("C = \\frac{m}{3\\sqrt[3]k} ln(\\sqrt[3]P) + \\frac{m}{6\\sqrt[3]k}ln((\\sqrt[3]P)^2) + \\frac{m}{\\sqrt{3}\\sqrt[3]k}tan^{-1}(\\frac{\\sqrt3}{3})", isolate = to_isolate, font_size = 30),
-                Tex("C = \\frac{m}{3\\sqrt[3]k} ln(\\sqrt[3]P) + \\frac{m}{6\\sqrt[3]k}ln((\\sqrt[3]P)^2) + \\frac{m}{\\sqrt{3}\\sqrt[3]k}\\cdot \\frac{\\pi}{6}", isolate = to_isolate, font_size = 30),
-                Tex("C = \\frac{m}{3\\sqrt[3]k} ln(\\sqrt[3]P) + \\frac{m}{6\\sqrt[3]k}ln((\\sqrt[3]P)^2) + \\frac{m}{6\\sqrt{3}\\sqrt[3]k}\\pi", isolate = to_isolate, font_size = 30),
+                Tex("C = -\\frac{m}{3\\sqrt[3]k} ln(\\sqrt[3]P) + \\frac{m}{6\\sqrt[3]k}ln((\\sqrt[3]P)^2) - \\frac{m}{\\sqrt{3}\\sqrt[3]k}tan^{-1}(\\frac{\\sqrt3}{3})", isolate = to_isolate, font_size = 30),
+                Tex("C = -\\frac{m}{3\\sqrt[3]k} ln(\\sqrt[3]P) + \\frac{m}{6\\sqrt[3]k}ln((\\sqrt[3]P)^2) - \\frac{m}{\\sqrt{3}\\sqrt[3]k}\\cdot \\frac{\\pi}{6}", isolate = to_isolate, font_size = 30),
+                Tex("C = -\\frac{m}{3\\sqrt[3]k} ln(\\sqrt[3]P) + \\frac{m}{6\\sqrt[3]k}ln((\\sqrt[3]P)^2) - \\frac{m}{6\\sqrt{3}\\sqrt[3]k}\\pi", isolate = to_isolate, font_size = 30),
                 Text("把C回代", font = "Noto Sans CJK SC", font_size = 48, color = BLUE),
                 Tex(
-                    "t + \\frac{m}{3\\sqrt[3]k} ln(\\sqrt[3]P) + \\frac{m}{6\\sqrt[3]k}ln((\\sqrt[3]P)^2) + \\frac{m}{6\\sqrt{3}\\sqrt[3]k}\\pi = \\frac{m}{3\\sqrt[3]k} ln(1 - \\frac{\\sqrt[3]k}{\\sqrt[3]P}v) + \\frac{m}{3\\sqrt[3]k} ln(\\sqrt[3]P) + \\frac{m}{6\\sqrt[3]k}ln(1 + \\frac{\\sqrt[3]k}{\\sqrt[3]P}kv + (\\frac{\\sqrt[3]k}{\\sqrt[3]P})^2v^2) + \\frac{m}{6\\sqrt[3]k}ln((\\sqrt[3]P)^2) + \\frac{m}{\\sqrt{3}\\sqrt[3]k}tan^{-1}(\\frac{\\sqrt[3]P + 2\\sqrt[3]kv}{\\sqrt{3}\\sqrt[3]P})", 
+                    "t - \\frac{m}{3\\sqrt[3]k} ln(\\sqrt[3]P) + \\frac{m}{6\\sqrt[3]k}ln((\\sqrt[3]P)^2) - \\frac{m}{6\\sqrt{3}\\sqrt[3]k}\\pi = -\\frac{m}{3\\sqrt[3]k} ln(1 - \\frac{\\sqrt[3]k}{\\sqrt[3]P}v) - \\frac{m}{3\\sqrt[3]k} ln(\\sqrt[3]P) + \\frac{m}{6\\sqrt[3]k}ln(1 + \\frac{\\sqrt[3]k}{\\sqrt[3]P}kv + (\\frac{\\sqrt[3]k}{\\sqrt[3]P})^2v^2) + \\frac{m}{6\\sqrt[3]k}ln((\\sqrt[3]P)^2) - \\frac{m}{\\sqrt{3}\\sqrt[3]k}tan^{-1}(\\frac{\\sqrt[3]P + 2\\sqrt[3]kv}{\\sqrt{3}\\sqrt[3]P})", 
                     isolate = to_isolate, font_size = 17
                 ),
                 Tex(
-                    "t + \\frac{m}{6\\sqrt{3}\\sqrt[3]k}\\pi = \\frac{m}{3\\sqrt[3]k} ln(1 - \\frac{\\sqrt[3]k}{\\sqrt[3]P}v) + \\frac{m}{6\\sqrt[3]k}ln(1 + \\frac{\\sqrt[3]k}{\\sqrt[3]P}kv + (\\frac{\\sqrt[3]k}{\\sqrt[3]P})^2v^2) + \\frac{m}{\\sqrt{3}\\sqrt[3]k}tan^{-1}(\\frac{\\sqrt[3]P + 2\\sqrt[3]kv}{\\sqrt{3}\\sqrt[3]P})", 
+                    "t - \\frac{m}{6\\sqrt{3}\\sqrt[3]k}\\pi = -\\frac{m}{3\\sqrt[3]k} ln(1 - \\frac{\\sqrt[3]k}{\\sqrt[3]P}v) + \\frac{m}{6\\sqrt[3]k}ln(1 + \\frac{\\sqrt[3]k}{\\sqrt[3]P}kv + (\\frac{\\sqrt[3]k}{\\sqrt[3]P})^2v^2) - \\frac{m}{\\sqrt{3}\\sqrt[3]k}tan^{-1}(\\frac{\\sqrt[3]P + 2\\sqrt[3]kv}{\\sqrt{3}\\sqrt[3]P})", 
                     isolate = to_isolate, font_size = 30
                 ),
                 Tex(
-                    "t = -\\frac{m}{6\\sqrt{3}\\sqrt[3]k}\\pi + \\frac{m}{3\\sqrt[3]k} ln(1 - \\frac{\\sqrt[3]k}{\\sqrt[3]P}v) + \\frac{m}{6\\sqrt[3]k}ln(1 + \\frac{\\sqrt[3]k}{\\sqrt[3]P}kv + (\\frac{\\sqrt[3]k}{\\sqrt[3]P})^2v^2) + \\frac{m}{\\sqrt{3}\\sqrt[3]k}tan^{-1}(\\frac{\\sqrt[3]P + 2\\sqrt[3]kv}{\\sqrt{3}\\sqrt[3]P})", 
+                    "t = \\frac{m}{6\\sqrt{3}\\sqrt[3]k}\\pi - \\frac{m}{3\\sqrt[3]k} ln(1 - \\frac{\\sqrt[3]k}{\\sqrt[3]P}v) + \\frac{m}{6\\sqrt[3]k}ln(1 + \\frac{\\sqrt[3]k}{\\sqrt[3]P}kv + (\\frac{\\sqrt[3]k}{\\sqrt[3]P})^2v^2) - \\frac{m}{\\sqrt{3}\\sqrt[3]k}tan^{-1}(\\frac{\\sqrt[3]P + 2\\sqrt[3]kv}{\\sqrt{3}\\sqrt[3]P})", 
                     isolate = to_isolate, font_size = 30
                 ),
 
