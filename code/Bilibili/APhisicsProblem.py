@@ -45,7 +45,7 @@ class APhisicsProblem(Scene):
         #     Text("可是怎么都写不出那个解析式，那时我就以为这个函数是无解的", font = FONT, font_size = 24, color = BLUE),
         #     # font = FONT, font_size = 24, color = BLUE, buff = 1
         # )
-
+         
         # j = 3
         # for i in explain_the_problem:
         #     self.play(Write(i.shift(UP * j / 2 )))
@@ -66,7 +66,7 @@ class APhisicsProblem(Scene):
         # self.play(FadeOut(text))
 
         to_isolate = [
-            "P", "v", "-", "f", "=", "m", "a", "dv", "dt", 
+            # "P", "v", "-", "f", "=", "m", "a", "dv", "dt", 
         ]
         answers = VGroup(
             VGroup(
@@ -113,21 +113,83 @@ class APhisicsProblem(Scene):
                 Tex("v^2 = \\frac{P}{k}(1 - e ^ {-\\frac{2k}{m}t})", isolate = to_isolate),
                 Tex("v = \\sqrt{\\frac{P}{k}(1 - e ^ {-\\frac{2k}{m}t})}", isolate = to_isolate),
                 
+            ),
+
+            VGroup(
+                Text("假设汽车的质量为m  初速度为0  功率为定值P 所受阻力为kv^2", font = "Noto Sans CJK SC", font_size = 35, color = BLUE),
+                Text("根据牛顿第二定律", font = "Noto Sans CJK SC", font_size = 48, color = BLUE),
+                Tex("\\frac{P}{v} - kv^2 = ma", isolate = to_isolate),
+                Tex("\\frac{P - kv^3}{v} = m\\frac{dv}{dt}", isolate = to_isolate),
+                Tex("dt = m\\frac{v}{P - kv^3}dv", isolate = to_isolate),
+                Tex("dt = m\\frac{v}{(\\sqrt[3]P)^3 - (\\sqrt[3]k)^3v^3}dv", isolate = to_isolate),
+                Tex("dt = m\\frac{3v}{3(\\sqrt[3]P - \\sqrt[3]kv)((\\sqrt[3]P)^2 + \\sqrt[3]P\\sqrt[3]kv + (\\sqrt[3]kv)^2)}dv", isolate = to_isolate),
+                Tex("dt = m\\frac{(\\sqrt[3]P)^2 + \\sqrt[3]P\\sqrt[3]kv + (\\sqrt[3]kv)^2) - (\\sqrt[3]P - \\sqrt[3]kv)^2}{3(\\sqrt[3]P - \\sqrt[3]kv)((\\sqrt[3]P)^2 + \\sqrt[3]P\\sqrt[3]kv + (\\sqrt[3]kv)^2)}dv", isolate = to_isolate),
+                Tex("dt = m(-\\frac{-\\sqrt[3]k}{3\\sqrt[3]k(\\sqrt[3]P - \\sqrt[3]kv)} - \\frac{(\\sqrt[3]P - \\sqrt[3]kv)}{3((\\sqrt[3]P)^2 + \\sqrt[3]P\\sqrt[3]kv + (\\sqrt[3]kv)^2)})dv", isolate = to_isolate),
+                Tex("dt = m(-\\frac{-\\sqrt[3]k}{3\\sqrt[3]k(\\sqrt[3]P - \\sqrt[3]kv)} + \\frac{(\\sqrt[3]kv - \\sqrt[3]P)}{3((\\sqrt[3]P)^2 + \\sqrt[3]P\\sqrt[3]kv + (\\sqrt[3]kv)^2)})dv", isolate = to_isolate),
+                Tex("dt = m(-\\frac{-\\sqrt[3]k}{3\\sqrt[3]k(\\sqrt[3]P - \\sqrt[3]kv)} + \\frac{(2\\sqrt[3]kv + \\sqrt[3]P) - 3\\sqrt[3]P}{6((\\sqrt[3]P)^2 + \\sqrt[3]P\\sqrt[3]kv + (\\sqrt[3]kv)^2)})dv", isolate = to_isolate),
+                Tex("dt = m(-\\frac{-\\sqrt[3]k}{3\\sqrt[3]k(\\sqrt[3]P - \\sqrt[3]kv)} + \\frac{(2\\sqrt[3]kv + \\sqrt[3]P)}{6((\\sqrt[3]P)^2 + \\sqrt[3]P\\sqrt[3]kv + (\\sqrt[3]kv)^2)} - \\frac{3\\sqrt[3]P}{6((\\sqrt[3]P)^2 + \\sqrt[3]P\\sqrt[3]kv + (\\sqrt[3]kv)^2)})dv", isolate = to_isolate, font_size = 30),
+                Tex("dt = m(-\\frac{-\\sqrt[3]k}{3\\sqrt[3]k(\\sqrt[3]P - \\sqrt[3]kv)} + \\frac{(2\\sqrt[3]kv + \\sqrt[3]P)}{6((\\sqrt[3]P)^2 + \\sqrt[3]P\\sqrt[3]kv + (\\sqrt[3]kv)^2)} - \\frac{\\sqrt[3]P}{2((\\sqrt[3]P)^2 + \\sqrt[3]P\\sqrt[3]kv + (\\sqrt[3]kv)^2)})dv", isolate = to_isolate, font_size = 30),
+                Tex("\\int dt + C = \\int m(-\\frac{-\\sqrt[3]k}{3\\sqrt[3]k(\\sqrt[3]P - \\sqrt[3]kv)} + \\frac{(2\\sqrt[3]kv + \\sqrt[3]P)}{6((\\sqrt[3]P)^2 + \\sqrt[3]P\\sqrt[3]kv + (\\sqrt[3]kv)^2)} - \\frac{\\sqrt[3]P}{2((\\sqrt[3]P)^2 + \\sqrt[3]P\\sqrt[3]kv + (\\sqrt[3]kv)^2)})dv", isolate = to_isolate, font_size = 30),
+                Tex("t + C = \\frac{m}{3\\sqrt[3]k} ln(\\sqrt[3]P - \\sqrt[3]kv) + \\frac{m}{6\\sqrt[3]k}ln((\\sqrt[3]P)^2 + \\sqrt[3]P\\sqrt[3]kv + (\\sqrt[3]kv)^2) + \\frac{m}{\\sqrt{3}\\sqrt[3]k}tan^{-1}(\\frac{\\sqrt[3]P + 2\\sqrt[3]kv}{\\sqrt{3}\\sqrt[3]P})", isolate = to_isolate, font_size = 30),
+                Tex(
+                    "t + C = \\frac{m}{3\\sqrt[3]k} ln(1 - \\frac{\\sqrt[3]k}{\\sqrt[3]P}v) + \\frac{m}{3\\sqrt[3]k} ln(\\sqrt[3]P) + \\frac{m}{6\\sqrt[3]k}ln(1 + \\frac{\\sqrt[3]k}{\\sqrt[3]P}kv + (\\frac{\\sqrt[3]k}{\\sqrt[3]P})^2v^2) + \\frac{m}{6\\sqrt[3]k}ln((\\sqrt[3]P)^2) + \\frac{m}{\\sqrt{3}\\sqrt[3]k}tan^{-1}(\\frac{\\sqrt[3]P + 2\\sqrt[3]kv}{\\sqrt{3}\\sqrt[3]P})", 
+                    isolate = to_isolate, font_size = 20
+                ),
+                Text("把t = 0, v = 0带入", font = "Noto Sans CJK SC", font_size = 48, color = BLUE),
+                Tex(
+                    "0 + C = \\frac{m}{3\\sqrt[3]k} ln(1 - \\frac{\\sqrt[3]k}{\\sqrt[3]P} \\cdot 0) + \\frac{m}{3\\sqrt[3]k} ln(\\sqrt[3]P) + \\frac{m}{6\\sqrt[3]k}ln(1 + \\frac{\\sqrt[3]k}{\\sqrt[3]P}\\cdot 0 + (\\frac{\\sqrt[3]k}{\\sqrt[3]P})^2\\cdot 0) + \\frac{m}{6\\sqrt[3]k}ln((\\sqrt[3]P)^2) + \\frac{m}{\\sqrt{3}\\sqrt[3]k}tan^{-1}(\\frac{\\sqrt[3]P + 2\\sqrt[3]k\\cdot 0}{\\sqrt{3}\\sqrt[3]P})", 
+                    isolate = to_isolate, font_size = 20
+                ),
+                Tex("C = \\frac{m}{3\\sqrt[3]k} ln(\\sqrt[3]P) + \\frac{m}{6\\sqrt[3]k}ln((\\sqrt[3]P)^2) + \\frac{m}{\\sqrt{3}\\sqrt[3]k}tan^{-1}(\\frac{\\sqrt3}{3})", isolate = to_isolate, font_size = 30),
+                Tex("C = \\frac{m}{3\\sqrt[3]k} ln(\\sqrt[3]P) + \\frac{m}{6\\sqrt[3]k}ln((\\sqrt[3]P)^2) + \\frac{m}{\\sqrt{3}\\sqrt[3]k}\\cdot \\frac{\\pi}{6})", isolate = to_isolate, font_size = 30),
+                Tex("C = \\frac{m}{3\\sqrt[3]k} ln(\\sqrt[3]P) + \\frac{m}{6\\sqrt[3]k}ln((\\sqrt[3]P)^2) + \\frac{m}{6\\sqrt{3}\\sqrt[3]k}\\pi)", isolate = to_isolate, font_size = 30),
+                Text("把C回代", font = "Noto Sans CJK SC", font_size = 48, color = BLUE),
+                Tex(
+                    "t + \\frac{m}{3\\sqrt[3]k} ln(\\sqrt[3]P) + \\frac{m}{6\\sqrt[3]k}ln((\\sqrt[3]P)^2) + \\frac{m}{6\\sqrt{3}\\sqrt[3]k}\\pi = \\frac{m}{3\\sqrt[3]k} ln(1 - \\frac{\\sqrt[3]k}{\\sqrt[3]P}v) + \\frac{m}{3\\sqrt[3]k} ln(\\sqrt[3]P) + \\frac{m}{6\\sqrt[3]k}ln(1 + \\frac{\\sqrt[3]k}{\\sqrt[3]P}kv + (\\frac{\\sqrt[3]k}{\\sqrt[3]P})^2v^2) + \\frac{m}{6\\sqrt[3]k}ln((\\sqrt[3]P)^2) + \\frac{m}{\\sqrt{3}\\sqrt[3]k}tan^{-1}(\\frac{\\sqrt[3]P + 2\\sqrt[3]kv}{\\sqrt{3}\\sqrt[3]P})", 
+                    isolate = to_isolate, font_size = 15
+                ),
+                Tex(
+                    "t + \\frac{m}{6\\sqrt{3}\\sqrt[3]k}\\pi = \\frac{m}{3\\sqrt[3]k} ln(1 - \\frac{\\sqrt[3]k}{\\sqrt[3]P}v) + \\frac{m}{6\\sqrt[3]k}ln(1 + \\frac{\\sqrt[3]k}{\\sqrt[3]P}kv + (\\frac{\\sqrt[3]k}{\\sqrt[3]P})^2v^2) + \\frac{m}{\\sqrt{3}\\sqrt[3]k}tan^{-1}(\\frac{\\sqrt[3]P + 2\\sqrt[3]kv}{\\sqrt{3}\\sqrt[3]P})", 
+                    isolate = to_isolate, font_size = 30
+                ),
+                Tex(
+                    "t = -\\frac{m}{6\\sqrt{3}\\sqrt[3]k}\\pi + \\frac{m}{3\\sqrt[3]k} ln(1 - \\frac{\\sqrt[3]k}{\\sqrt[3]P}v) + \\frac{m}{6\\sqrt[3]k}ln(1 + \\frac{\\sqrt[3]k}{\\sqrt[3]P}kv + (\\frac{\\sqrt[3]k}{\\sqrt[3]P})^2v^2) + \\frac{m}{\\sqrt{3}\\sqrt[3]k}tan^{-1}(\\frac{\\sqrt[3]P + 2\\sqrt[3]kv}{\\sqrt{3}\\sqrt[3]P})", 
+                    isolate = to_isolate, font_size = 30
+                ),
+
+                # Tex("dt = -m\\frac{-2kv}{2k(P - kv^2)}dv", isolate = to_isolate),
+                # Tex("\int dt + C = \int -m\\frac{-2kv}{2k(P - kv^2)}dv", isolate = to_isolate),
+                # Tex("t + C = -\\frac{m}{2k}ln(P - kv^2)", isolate = to_isolate),
+                # Tex("t + C = -\\frac{m}{2k}ln(P(1 - \\frac{k}{P}v^2)", isolate = to_isolate),
+                # Tex("t + C = -\\frac{m}{2k}ln(1 - \\frac{k}{P}v^2) - \\frac{m}{2k}lnP", isolate = to_isolate),
+                # Text("把t = 0, v = 0带入", font = "Noto Sans CJK SC", font_size = 48, color = BLUE),
+                # Tex("0 + C = -\\frac{m}{2k}ln(1 - \\frac{k}{P}0^2) - \\frac{m}{2k}lnP", isolate = to_isolate),
+                # Tex("C = - \\frac{m}{2k}lnP", isolate = to_isolate),
+                # Text("把C回代", font = "Noto Sans CJK SC", font_size = 48, color = BLUE),
+                # Tex("t - \\frac{m}{2k}lnP = -\\frac{m}{2k}ln(1 - \\frac{k}{P}v^2) - \\frac{m}{2k}lnP", isolate = to_isolate),
+                # Tex("t = -\\frac{m}{2k}ln(1 - \\frac{k}{P}v^2)", isolate = to_isolate),
+                # Tex("-\\frac{2k}{m}t = ln(1 - \\frac{k}{P}v^2)", isolate = to_isolate),
+                # Tex("e ^ {-\\frac{2k}{m}t} = e^{ln(1 - \\frac{k}{P}v^2)}", isolate = to_isolate),
+                # Tex("e ^ {-\\frac{2k}{m}t} = 1 - \\frac{k}{P}v^2", isolate = to_isolate),
+                # Tex("\\frac{k}{P}v^2 = 1 - e ^ {-\\frac{2k}{m}t}", isolate = to_isolate),
+                # Tex("v^2 = \\frac{P}{k}(1 - e ^ {-\\frac{2k}{m}t})", isolate = to_isolate),
+                # Tex("v = \\sqrt{\\frac{P}{k}(1 - e ^ {-\\frac{2k}{m}t})}", isolate = to_isolate),
             )
         )
         
         ans = answers[0]
         play_kw = {"run_time": 3}
-        # for i in ans:
-        #     if i.__class__ == Tex:
-        #         i.set_color_by_tex_to_color_map({
-        #             "{dv}": PURPLE,
-        #             "{dt}": RED,
-        #             "{v}":  PURPLE,
-        #             "{t}":  RED,
-        #             # "P":  PINK,
-        #             # "f":  BLUE,
-        #         })
+        # for ans in answers:
+        #     for i in ans:
+        #         if i.__class__ == Tex:
+        #             i.set_color_by_tex_to_color_map({
+        #                 "dv": PURPLE,
+        #                 "dt": RED,
+        #                 "v":  PURPLE,
+        #                 "t":  RED,
+        #                 # "P":  PINK,
+        #                 # "f":  BLUE,
+        #             })
 
 
         # self.play(Write(ans[0]))
@@ -173,7 +235,41 @@ class APhisicsProblem(Scene):
 
         # self.play(FadeOut(ans))
 
-        ans = answers[1]
+        # ans = answers[1]
+
+        # self.play(Write(ans[0]))
+        # self.play(ans[0].animate.shift(UP * 3))
+
+        # self.play(Write(ans[1].shift(UP)))
+        # self.play(Write(ans[2]))
+
+        # k1 = ans[1]
+        # k2 = 0
+
+        # for i in ans:
+        #     if i.__class__ == Tex:
+        #         if k2:
+        #             self.play(
+        #                 TransformMatchingTex(
+        #                     k2, i, path_arc = PI / 2,
+        #                 ), **play_kw
+        #             )
+        #         k2 = i
+        #     else:
+        #         if k1 and i != ans[0] and i != ans[1]:
+        #             # self.play(
+        #             #     TransformMatchingTex(
+        #             #         k1, i.shift(UP)
+        #             #     ), **play_kw
+        #             # )
+        #             self.play(FadeOut(k1))
+        #             self.play(FadeIn(i.shift(UP)))
+        #         k1 = i
+        #     self.wait()
+        # self.wait(5)
+
+
+        ans = answers[2]
 
         self.play(Write(ans[0]))
         self.play(ans[0].animate.shift(UP * 3))
@@ -189,7 +285,7 @@ class APhisicsProblem(Scene):
                 if k2:
                     self.play(
                         TransformMatchingTex(
-                            k2, i, path_arc = PI / 2,
+                            k2, i, path_arc = PI / 4,
                         ), **play_kw
                     )
                 k2 = i
