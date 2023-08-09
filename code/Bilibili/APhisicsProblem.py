@@ -27,7 +27,7 @@ class APhisicsProblem(Scene):
         #     },
         # ).shift(DOWN * 2 + LEFT * 1)
         # axes.flip(UR)
-        # axes.add_coordinate_labels()
+        # # axes.add_coordinate_labels()
 
         # self.play(FadeIn(axes))
 
@@ -156,26 +156,16 @@ class APhisicsProblem(Scene):
                     "t = \\frac{m}{6\\sqrt{3}\\sqrt[3]k}\\pi - \\frac{m}{3\\sqrt[3]k} ln(1 - \\frac{\\sqrt[3]k}{\\sqrt[3]P}v) + \\frac{m}{6\\sqrt[3]k}ln(1 + \\frac{\\sqrt[3]k}{\\sqrt[3]P}kv + (\\frac{\\sqrt[3]k}{\\sqrt[3]P})^2v^2) - \\frac{m}{\\sqrt{3}\\sqrt[3]k}tan^{-1}(\\frac{\\sqrt[3]P + 2\\sqrt[3]kv}{\\sqrt{3}\\sqrt[3]P})", 
                     isolate = to_isolate, font_size = 30
                 ),
-
-                # Tex("dt = -m\\frac{-2kv}{2k(P - kv^2)}dv", isolate = to_isolate),
-                # Tex("\int dt + C = \int -m\\frac{-2kv}{2k(P - kv^2)}dv", isolate = to_isolate),
-                # Tex("t + C = -\\frac{m}{2k}ln(P - kv^2)", isolate = to_isolate),
-                # Tex("t + C = -\\frac{m}{2k}ln(P(1 - \\frac{k}{P}v^2)", isolate = to_isolate),
-                # Tex("t + C = -\\frac{m}{2k}ln(1 - \\frac{k}{P}v^2) - \\frac{m}{2k}lnP", isolate = to_isolate),
-                # Text("把t = 0, v = 0带入", font = "Noto Sans CJK SC", font_size = 48, color = BLUE),
-                # Tex("0 + C = -\\frac{m}{2k}ln(1 - \\frac{k}{P}0^2) - \\frac{m}{2k}lnP", isolate = to_isolate),
-                # Tex("C = - \\frac{m}{2k}lnP", isolate = to_isolate),
-                # Text("把C回代", font = "Noto Sans CJK SC", font_size = 48, color = BLUE),
-                # Tex("t - \\frac{m}{2k}lnP = -\\frac{m}{2k}ln(1 - \\frac{k}{P}v^2) - \\frac{m}{2k}lnP", isolate = to_isolate),
-                # Tex("t = -\\frac{m}{2k}ln(1 - \\frac{k}{P}v^2)", isolate = to_isolate),
-                # Tex("-\\frac{2k}{m}t = ln(1 - \\frac{k}{P}v^2)", isolate = to_isolate),
-                # Tex("e ^ {-\\frac{2k}{m}t} = e^{ln(1 - \\frac{k}{P}v^2)}", isolate = to_isolate),
-                # Tex("e ^ {-\\frac{2k}{m}t} = 1 - \\frac{k}{P}v^2", isolate = to_isolate),
-                # Tex("\\frac{k}{P}v^2 = 1 - e ^ {-\\frac{2k}{m}t}", isolate = to_isolate),
-                # Tex("v^2 = \\frac{P}{k}(1 - e ^ {-\\frac{2k}{m}t})", isolate = to_isolate),
-                # Tex("v = \\sqrt{\\frac{P}{k}(1 - e ^ {-\\frac{2k}{m}t})}", isolate = to_isolate),
             )
         )
+
+        assumes = VGroup(
+            Text("首先来看一种比较简单的情况 即汽车所受的阻力为恒力f", font = "Noto Sans CJK SC", font_size = 35, color = BLUE),
+            Text("如果考虑更真实的情况呢？", font = "Noto Sans CJK SC", font_size = 35, color = BLUE),            
+        )
+
+        self.play(Write(assumes[0]))
+        self.play(FadeOut(assumes[0]))
         
         ans = answers[0]
         play_kw = {"run_time": 3}
@@ -192,81 +182,72 @@ class APhisicsProblem(Scene):
         #             })
 
 
-        # self.play(Write(ans[0]))
-        # self.play(ans[0].animate.shift(UP * 3))
+        self.play(Write(ans[0]))
+        self.play(ans[0].animate.shift(UP * 3))
 
-        # self.play(Write(ans[1].shift(UP)))
-        # self.play(Write(ans[2]))
-        # self.play(
-        #     TransformMatchingTex(
-        #         ans[2], ans[3],
-        #         path_arc = PI / 2,
-        #     )
-        # )
-        # self.play(
-        #     TransformMatchingTex(
-        #         ans[3], ans[4],
-        #         path_arc = PI / 2,
-        #     )
-        # )
-        # k1 = ans[1]
-        # k2 = 0
-        # for i in ans:
-        #     if i.__class__ == Tex:
-        #         if k2:
-        #             self.play(
-        #                 TransformMatchingTex(
-        #                     k2, i, path_arc = PI / 2,
-        #                 ), **play_kw
-        #             )
-        #         k2 = i
-        #     else:
-        #         if k1 and i != ans[0] and i != ans[1]:
-        #             # self.play(
-        #             #     TransformMatchingTex(
-        #             #         k1, i.shift(UP)
-        #             #     ), **play_kw
-        #             # )
-        #             self.play(FadeOut(k1))
-        #             self.play(FadeIn(i.shift(UP)))
-        #         k1 = i
-        #     self.wait()
-        # self.wait(5)
+        self.play(Write(ans[1].shift(UP)))
+        self.play(Write(ans[2]))
+        
+        k1 = ans[1]
+        k2 = 0
+        for i in ans:
+            if i.__class__ == Tex:
+                if k2:
+                    self.play(
+                        TransformMatchingTex(
+                            k2, i, path_arc = PI / 2,
+                        ), **play_kw
+                    )
+                k2 = i
+            else:
+                if k1 and i != ans[0] and i != ans[1]:
+                    self.play(FadeOut(k1))
+                    self.play(FadeIn(i.shift(UP)))
+                k1 = i
+            self.wait()
+        self.wait(5)
 
         # self.play(FadeOut(ans))
+        self.clear()
+        
 
-        # ans = answers[1]
 
-        # self.play(Write(ans[0]))
-        # self.play(ans[0].animate.shift(UP * 3))
 
-        # self.play(Write(ans[1].shift(UP)))
-        # self.play(Write(ans[2]))
+        self.play(Write(assumes[1]))
+        self.play(FadeOut(assumes[1]))
 
-        # k1 = ans[1]
-        # k2 = 0
+        ans = answers[1]
 
-        # for i in ans:
-        #     if i.__class__ == Tex:
-        #         if k2:
-        #             self.play(
-        #                 TransformMatchingTex(
-        #                     k2, i, path_arc = PI / 2,
-        #                 ), **play_kw
-        #             )
-        #         k2 = i
-        #     else:
-        #         if k1 and i != ans[0] and i != ans[1]:
-        #             # self.play(
-        #             #     TransformMatchingTex(
-        #             #         k1, i.shift(UP)
-        #             #     ), **play_kw
-        #             # )
-        #             self.play(FadeOut(k1))
-        #             self.play(FadeIn(i.shift(UP)))
-        #         k1 = i
-        #     self.wait()
-        # self.wait(5)
+        self.play(Write(ans[0]))
+        self.play(ans[0].animate.shift(UP * 3))
+
+        self.play(Write(ans[1].shift(UP)))
+        self.play(Write(ans[2]))
+
+        k1 = ans[1]
+        k2 = 0
+
+        for i in ans:
+            if i.__class__ == Tex:
+                if k2:
+                    self.play(
+                        TransformMatchingTex(
+                            k2, i, path_arc = PI / 2,
+                        ), **play_kw
+                    )
+                k2 = i
+            else:
+                if k1 and i != ans[0] and i != ans[1]:
+                    self.play(FadeOut(k1))
+                    self.play(FadeIn(i.shift(UP)))
+                k1 = i
+            self.wait()
+        self.wait(5)
+        # self.play(FadeOut(answers))
+        self.clear()
+
+
+
 
 
         ans = answers[2]
@@ -291,13 +272,12 @@ class APhisicsProblem(Scene):
                 k2 = i
             else:
                 if k1 and i != ans[0] and i != ans[1]:
-                    # self.play(
-                    #     TransformMatchingTex(
-                    #         k1, i.shift(UP)
-                    #     ), **play_kw
-                    # )
                     self.play(FadeOut(k1))
                     self.play(FadeIn(i.shift(UP)))
                 k1 = i
             self.wait()
         self.wait(5)
+
+        self.clear()
+
+    
