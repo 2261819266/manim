@@ -5,65 +5,67 @@ FONT = "Noto Sans CJK SC"
 
 class APhisicsProblem(Scene):
     def construct(self) -> None:
+        text_kw = {"font": FONT, "font_size": 24, "color": BLUE}
+        text_Chinese_kw = {"font": "Noto Sans CJK SC", "font_size": 48, "color": BLUE}
 
-        # introduce = Text(
-        #     """
-        # 在我初三的时候，曾经遇到过一道关于恒定功率汽车启动物理题目
-        # 并且题目还附了一张v-t的函数图像
+        introduce = Text(
+            """
+        在我初三的时候，曾经遇到过一道关于恒定功率汽车启动物理题目
+        并且题目还附了一张v-t的函数图像
 
-        #     """, 
-        #     font = FONT, font_size = 24, color = BLUE
-        # )
+            """, 
+            **text_kw
+        )
 
-        # self.play(Write(introduce), run_time = 5)
-        # self.play(introduce.animate.shift(UP * 3), run_time = 2)
+        self.play(Write(introduce), run_time = 5)
+        self.play(introduce.animate.shift(UP * 3), run_time = 2)
 
-        # axes = Axes(
-        #     x_range = (0, 2),
-        #     y_range = (0, 8),
-        #     axis_config = {
-        #         "include_tip": True,
-        #         "stroke_color": BLUE_E,
-        #     },
-        # ).shift(DOWN * 2 + LEFT * 1)
-        # axes.flip(UR)
-        # # axes.add_coordinate_labels()
+        axes = Axes(
+            x_range = (0, 2),
+            y_range = (0, 8),
+            axis_config = {
+                "include_tip": True,
+                "stroke_color": BLUE_E,
+            },
+        ).shift(DOWN * 2 + LEFT * 1)
+        axes.flip(UR)
+        # axes.add_coordinate_labels()
 
-        # self.play(FadeIn(axes))
+        self.play(FadeIn(axes))
 
-        # f = lambda v : (-math.log(1 - v) - v)
-        # graph = axes.get_graph(f, x_range = (0, 0.9999, 0.002), color = BLUE)
-        # limit_line = DashedLine(axes.coords_to_point(1, 0), axes.coords_to_point(1, 8))
-        # self.play(Write(graph), Write(limit_line))
+        f = lambda v : (-math.log(1 - v) - v)
+        graph = axes.get_graph(f, x_range = (0, 0.9999, 0.002), color = BLUE)
+        limit_line = DashedLine(axes.coords_to_point(1, 0), axes.coords_to_point(1, 8))
+        self.play(Write(graph), Write(limit_line))
 
 
-        # explain_the_problem = VGroup(
-        #     Text("题目描述大概是说在前一段时间汽车做加速运动，后面一段时间做匀速运动", font = FONT, font_size = 24, color = BLUE),
-        #     Text("我当时的直觉就是汽车的速度应该只会无线逼近那个最大值但是不会达到", font = FONT, font_size = 24, color = BLUE),
-        #     Text("那时只会一些导数和积分的知识的我试图证明它，", font = FONT, font_size = 24, color = BLUE),
-        #     Text("我认为只要求出速度或加速度的解析式再积分一下就可以了", font = FONT, font_size = 24, color = BLUE),
-        #     Text("可是怎么都写不出那个解析式，那时我就以为这个函数是无解的", font = FONT, font_size = 24, color = BLUE),
-        #     # font = FONT, font_size = 24, color = BLUE, buff = 1
-        # )
+        explain_the_problem = VGroup(
+            Text("题目描述大概是说在前一段时间汽车做加速运动，后面一段时间做匀速运动", **text_kw),
+            Text("我当时的直觉就是汽车的速度应该只会无线逼近那个最大值但是不会达到", **text_kw),
+            Text("那时只会一些导数和积分的知识的我试图证明它，", **text_kw),
+            Text("我认为只要求出速度或加速度的解析式再积分一下就可以了", **text_kw),
+            Text("可是怎么都写不出那个解析式，那时我就以为这个函数是无解的", **text_kw),
+            # **text_kw, buff = 1
+        )
          
-        # j = 3
-        # for i in explain_the_problem:
-        #     self.play(Write(i.shift(UP * j / 2 )))
-        #     j -= 1
+        j = 3
+        for i in explain_the_problem:
+            self.play(Write(i.shift(UP * j / 2 )))
+            j -= 1
 
-        # self.play(FadeOut(introduce), FadeOut(axes), FadeOut(explain_the_problem), FadeOut(limit_line), FadeOut(graph))
-        # self.wait()
+        self.play(FadeOut(introduce), FadeOut(axes), FadeOut(explain_the_problem), FadeOut(limit_line), FadeOut(graph))
+        self.wait()
 
-        # ask = Text("可是真的无解吗？", font = "Noto Sans CJK SC", font_size = 48, color = BLUE)
+        ask = Text("可是真的无解吗？", font = "Noto Sans CJK SC", font_size = 48, color = BLUE)
 
-        # self.play(Write(ask))
-        # self.wait(2)
-        # self.play(FadeOut(ask))
+        self.play(Write(ask))
+        self.wait(2)
+        self.play(FadeOut(ask))
 
-        # text = Text("几个月后我学习了一些微分方程相关的知识，突然发现这似乎是可以解的", font = "Noto Sans CJK SC", font_size = 30, color = BLUE)
-        # self.play(Write(text))
-        # self.wait(2)
-        # self.play(FadeOut(text))
+        text = Text("几个月后我学习了一些微分方程相关的知识，突然发现这似乎是可以解的", font = "Noto Sans CJK SC", font_size = 30, color = BLUE)
+        self.play(Write(text))
+        self.wait(2)
+        self.play(FadeOut(text))
 
         to_isolate = [
             # "P", "v", "-", "f", "=", "m", "a", "dv", "dt", 
@@ -280,4 +282,3 @@ class APhisicsProblem(Scene):
 
         self.clear()
 
-    
