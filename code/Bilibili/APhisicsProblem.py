@@ -5,8 +5,14 @@ FONT = "Noto Sans CJK SC"
 
 class APhisicsProblem(Scene):
 	def construct(self) -> None:
-		text_kw = {"font": FONT, "font_size": 24, "color": BLUE}
-		text_kw_48 = {"font": FONT, "font_size": 48, "color": BLUE}
+		_BLUE = "#66ccff"
+		text_kw = {"font": FONT, "font_size": 24, "color": _BLUE}
+		text_kw_48 = {"font": FONT, "font_size": 48, "color": _BLUE}
+
+		to_isolate = [
+			# "P", "v", "-", "f", "=", "m", "a", "dv", "dt", 
+		]
+		isolate_kw = {"isolate": to_isolate}
 
 		introduce = Text(
 			"""
@@ -34,7 +40,7 @@ class APhisicsProblem(Scene):
 		self.play(FadeIn(axes))
 
 		f = lambda v : (-math.log(1 - v) - v)
-		graph = axes.get_graph(f, x_range = (0, 0.9999, 0.002), color = BLUE)
+		graph = axes.get_graph(f, x_range = (0, 0.9999, 0.002), color = _BLUE)
 		limit_line = DashedLine(axes.coords_to_point(1, 0), axes.coords_to_point(1, 8))
 		self.play(Write(graph), Write(limit_line))
 
@@ -62,18 +68,15 @@ class APhisicsProblem(Scene):
 		self.wait(2)
 		self.play(FadeOut(ask))
 
-		text = Text("几个月后我学习了一些微分方程相关的知识，突然发现这似乎是可以解的", font = FONT, font_size = 30, color = BLUE)
+		text = Text("几个月后我学习了一些微分方程相关的知识，突然发现这似乎是可以解的", font = FONT, font_size = 30, color = _BLUE)
 		self.play(Write(text))
 		self.wait(2)
 		self.play(FadeOut(text))
 
-		to_isolate = [
-			# "P", "v", "-", "f", "=", "m", "a", "dv", "dt", 
-		]
-		isolate_kw = {"isolate": to_isolate}
+		
 		answers = VGroup(
 			VGroup(
-				Text("假设汽车的质量为m  初速度为0  功率为定值P 所受阻力恒为f", font = FONT, font_size = 35, color = BLUE),
+				Text("假设汽车的质量为m  初速度为0  功率为定值P 所受阻力恒为f", font = FONT, font_size = 35, color = _BLUE),
 				Text("根据牛顿第二定律", **text_kw_48),
 				Tex("\\frac{P}{v} - f = ma", **isolate_kw),
 				Tex("\\frac{P - fv}{v} = m\\frac{dv}{dt}", **isolate_kw),
@@ -93,7 +96,7 @@ class APhisicsProblem(Scene):
 				Tex("t = -\\frac{m}{f}v - \\frac{mP}{f^2}ln{(1 - \\frac{f}{P}v)}", **isolate_kw),
 			),
 			VGroup(
-				Text("假设汽车的质量为m  初速度为0  功率为定值P 所受阻力为kv", font = FONT, font_size = 35, color = BLUE),
+				Text("假设汽车的质量为m  初速度为0  功率为定值P 所受阻力为kv", font = FONT, font_size = 35, color = _BLUE),
 				Text("根据牛顿第二定律", **text_kw_48),
 				Tex("\\frac{P}{v} - kv = ma", **isolate_kw),
 				Tex("\\frac{P - kv^2}{v} = m\\frac{dv}{dt}", **isolate_kw),
@@ -119,7 +122,7 @@ class APhisicsProblem(Scene):
 			),
 
 			VGroup(
-				Text("假设汽车的质量为m  初速度为0  功率为定值P 所受阻力为kv^2", font = FONT, font_size = 35, color = BLUE),
+				Text("假设汽车的质量为m  初速度为0  功率为定值P 所受阻力为kv^2", font = FONT, font_size = 35, color = _BLUE),
 				Text("根据牛顿第二定律", **text_kw_48),
 				Tex("\\frac{P}{v} - kv^2 = ma", **isolate_kw),
 				Tex("\\frac{P - kv^3}{v} = m\\frac{dv}{dt}", **isolate_kw),
@@ -163,8 +166,8 @@ class APhisicsProblem(Scene):
 		)
 
 		assumes = VGroup(
-			Text("首先来看一种比较简单的情况 即汽车所受的阻力为恒力f", font = FONT, font_size = 35, color = BLUE),
-			Text("如果考虑更真实的情况呢？", font = FONT, font_size = 35, color = BLUE),			
+			Text("首先来看一种比较简单的情况 即汽车所受的阻力为恒力f", font = FONT, font_size = 35, color = _BLUE),
+			Text("如果考虑更真实的情况呢？", font = FONT, font_size = 35, color = _BLUE),			
 		)
 
 		self.play(Write(assumes[0]))
@@ -181,7 +184,7 @@ class APhisicsProblem(Scene):
 		#				 "v":  PURPLE,
 		#				 "t":  RED,
 		#				 # "P":  PINK,
-		#				 # "f":  BLUE,
+		#				 # "f":  _BLUE,
 		#			 })
 
 
@@ -281,5 +284,89 @@ class APhisicsProblem(Scene):
 			self.wait()
 		self.wait(5)
 
-		# self.clear()
+		self.clear()
+
+		self.wait()
+
+		draw_text = Text("最后我们来欣赏一下他们的图像", **text_kw_48)
+
+		self.play(FadeIn(draw_text))
+		self.play(FadeOut(draw_text))
+
+		self.wait()
+
+
+		pictures_text = VGroup(
+			Tex("t = -\\frac{m}{f}v - \\frac{mP}{f^2}ln{(1 - \\frac{f}{P}v)}", **isolate_kw, color = RED).shift(UP * 3),
+			Tex("v = \\sqrt{\\frac{P}{k}(1 - e ^ {-\\frac{2k}{m}t})} \\Leftrightarrow  t = -\\frac{m}{2k}ln(1 - \\frac{k}{P}v^2)", **isolate_kw, color = YELLOW, font_size = 40).shift(UP * 2),
+			Tex(
+				"t = \\frac{m}{6\\sqrt{3}\\sqrt[3]k}\\pi - \\frac{m}{3\\sqrt[3]k} ln(1 - \\frac{\\sqrt[3]k}{\\sqrt[3]P}v) + \\frac{m}{6\\sqrt[3]k}ln(1 + \\frac{\\sqrt[3]k}{\\sqrt[3]P}kv + (\\frac{\\sqrt[3]k}{\\sqrt[3]P})^2v^2) - \\frac{m}{\\sqrt{3}\\sqrt[3]k}tan^{-1}(\\frac{\\sqrt[3]P + 2\\sqrt[3]kv}{\\sqrt{3}\\sqrt[3]P})", 
+				**isolate_kw, font_size = 30, color = _BLUE
+			).shift(UP * 1),
+		)
+
+		transform = VGroup(
+			Tex("t = - v - ln(1 - v)", **isolate_kw, color = RED).shift(UP * 3),
+			Tex("v = \\sqrt{(1 - e ^ {-2t})} \\Leftrightarrow  t = -\\frac{1}{2}ln(1 - v^2)", **isolate_kw, color = YELLOW).shift(UP * 2),
+			Tex(
+				"t = \\frac{1}{6\\sqrt{3}}\\pi - \\frac{1}{3} ln(1 - v) + \\frac{1}{6}ln(1 + v + v^2) - \\frac{1}{\\sqrt{3}}tan^{-1}(\\frac{1 + 2v}{\\sqrt{3}})", 
+				**isolate_kw, color = _BLUE
+			).shift(UP * 1),
+		)
+
+		transform_text = Text("我们假设m, P, f, k的值均为1 为了方便观察 以下的图像均被沿竖直方向拉伸了4倍(横轴为t 纵轴为v)", font = FONT, font_size = 25, color = _BLUE)
+
+		self.play(Write(transform_text))
+		self.wait()
+		self.play(FadeOut(transform_text))
+		self.wait()
+
+		self.play(FadeIn(pictures_text))
+
+		for i in range(0, 3):
+			self.play(TransformMatchingTex(pictures_text[i], transform[i]))
+
+
+
+		pictures = VGroup(
+
+		)
+		axes_draw = Axes(
+			x_range = (0, 4),
+			y_range = (0, 8),
+			axis_config = {
+				"include_tip": True,
+				"stroke_color": WHITE,
+			},
+		).shift(DOWN * 1.5)
+		axes_draw.flip(UR)
+
+
+
+		self.play(FadeIn(axes_draw))
+
+		log = math.log
+		sqrt_3 = math.sqrt(3)
+
+		k = 4
+		limit_line = DashedLine(axes_draw.coords_to_point(k, 0), axes_draw.coords_to_point(k, 8))
+		self.play(Write(limit_line))
+
+		
+		functions = [
+			lambda v : (-log(1 - v) - v),
+			lambda v : (-0.5 * log(1 - v ** 2)),
+			lambda v : (1.0 / 6 / sqrt_3 * PI
+				- 1.0 / 3 * log(1 - v) 
+				+ 1.0 / 6 * log(1 + v + v ** 2) 
+				- 1.0 / sqrt_3 * math.atan(((1 + 2 * v) / sqrt_3))),
+		]
+
+		for i in range(0, 3):
+			functions_graph = axes_draw.get_graph(
+				functions[i], 
+				x_range = (0, [0.9999, 0.9999999, 0.9999999999][i], 0.002), 
+				color = [RED, YELLOW, _BLUE][i]
+			).stretch(factor = k, dim = 1, about_edge = DOWN)
+			self.play(Write(functions_graph))
 
