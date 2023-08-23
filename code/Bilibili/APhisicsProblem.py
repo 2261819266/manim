@@ -5,6 +5,7 @@ FONT = "Noto Sans CJK SC"
 
 class APhisicsProblem(Scene):
 	def construct(self) -> None:
+		play_kw = {"run_time": 2}
 		_BLUE = "#66ccff"
 		text_kw = {"font": FONT, "font_size": 24, "color": _BLUE}
 		text_kw_48 = {"font": FONT, "font_size": 48, "color": _BLUE}
@@ -58,6 +59,8 @@ class APhisicsProblem(Scene):
 		for i in explain_the_problem:
 			self.play(Write(i.shift(UP * j / 2)))
 			j -= 1
+
+		self.wait(2)
 
 		self.play(FadeOut(introduce), FadeOut(axes), FadeOut(explain_the_problem), FadeOut(limit_line), FadeOut(graph))
 		self.wait()
@@ -174,7 +177,6 @@ class APhisicsProblem(Scene):
 		self.play(FadeOut(assumes[0]))
 		
 		ans = answers[0]
-		play_kw = {"run_time": 3}
 		# for ans in answers:
 		#	 for i in ans:
 		#		 if i.__class__ == Tex:
@@ -211,7 +213,7 @@ class APhisicsProblem(Scene):
 					self.play(FadeIn(i.shift(UP)))
 				k1 = i
 			self.wait()
-		self.wait(5)
+		self.wait(3)
 
 		# self.play(FadeOut(ans))
 		self.clear()
@@ -248,7 +250,7 @@ class APhisicsProblem(Scene):
 					self.play(FadeIn(i.shift(UP)))
 				k1 = i
 			self.wait()
-		self.wait(5)
+		self.wait(3)
 		# self.play(FadeOut(answers))
 		self.clear()
 
@@ -282,7 +284,7 @@ class APhisicsProblem(Scene):
 					self.play(FadeIn(i.shift(UP)))
 				k1 = i
 			self.wait()
-		self.wait(5)
+		self.wait(3)
 
 		self.clear()
 
