@@ -371,4 +371,26 @@ class APhisicsProblem(Scene):
 				color = [RED, YELLOW, _BLUE][i]
 			).stretch(factor = k, dim = 1, about_edge = DOWN)
 			self.play(Write(functions_graph))
+		
+		self.wait()
+		self.clear()
+		self.wait()
+
+		end = VGroup(
+			Text("以上就是这期视频的全部内容了", **text_kw_48),
+			Text("由于这是我的第一个视频 可能有许多不足", **text_kw_48),
+			Text("如果你喜欢的话欢迎你一键三连", **text_kw_48),
+			Text("我们下期视频再见", **text_kw_48),
+		)
+
+		self.play(Write(end[0].shift(UP * 2)))
+		self.play(Write(end[1].shift(UP)))
+		self.play(Write(end[2]))
+		self.play(Write(end[3].shift(DOWN)))
+		self.wait()
+
+		self.play(FadeOut(end))
+		self.wait(3)
+		
+
 
